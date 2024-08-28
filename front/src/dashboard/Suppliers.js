@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -78,15 +77,18 @@ export default function Suppliers() {
           "/suppliers/",
           currentSupplier
         );
+
         setSuppliers([...suppliers, response.data]);
       } else if (modalType === "edit") {
         const response = await axiosInstance.put(
-          `/suppliers/${currentSupplier.id}/`,
+          `/suppliers/${currentSupplier.id_supplier}/`,
           currentSupplier
         );
         setSuppliers(
           suppliers.map((supplier) =>
-            supplier.id === response.data.id ? response.data : supplier
+            supplier.id_supplier === response.data.id_supplier
+              ? response.data
+              : supplier
           )
         );
       }
@@ -99,7 +101,7 @@ export default function Suppliers() {
   const handleDeleteSupplier = async (id) => {
     try {
       await axiosInstance.delete(`/suppliers/${id}/`);
-      setSuppliers(suppliers.filter((supplier) => supplier.id !== id));
+      setSuppliers(suppliers.filter((supplier) => supplier.id_supplier !== id));
     } catch (error) {
       console.error("Error deleting supplier:", error);
     }
@@ -167,7 +169,9 @@ export default function Suppliers() {
                       </Button>
                       <Button
                         color="error"
-                        onClick={() => handleDeleteSupplier(supplier.id)}
+                        onClick={() =>
+                          handleDeleteSupplier(supplier.id_supplier)
+                        }
                       >
                         Delete
                       </Button>

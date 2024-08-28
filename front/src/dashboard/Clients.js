@@ -38,6 +38,7 @@ export default function Clients() {
     email: "",
     address: "",
   }); // State for the client being added/edited
+
   useEffect(() => {
     const fetchClients = async () => {
       try {
@@ -67,7 +68,6 @@ export default function Clients() {
     setModalOpen(true);
   };
   const handleCloseModal = () => setModalOpen(false);
-
   const handleSaveClient = async () => {
     try {
       if (modalType === "add") {
@@ -91,6 +91,7 @@ export default function Clients() {
       console.error("Error saving client:", error);
     }
   };
+
   const handleDeleteClient = async (id) => {
     try {
       await axiosInstance.delete(`/clients/${id}/`);
