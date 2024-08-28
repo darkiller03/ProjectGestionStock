@@ -1,8 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-
 import Box from "@mui/material/Box";
-
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
@@ -11,14 +9,12 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
-
+import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import axiosInstance from "../axiosInstance";
-
-// import Link from '@mui/material/Link';
 
 const style = {
   position: "absolute",
@@ -84,9 +80,7 @@ export default function Products() {
         setProducts([...products, response.data]);
       } else if (modalType === "edit") {
         const response = await axiosInstance.put(
-          `/products/${currentProduct.id}/`,
           `/products/${currentProduct.id_product}/`,
-
           currentProduct
         );
         setProducts(
@@ -106,9 +100,6 @@ export default function Products() {
   const handleDeleteProduct = async (id) => {
     try {
       await axiosInstance.delete(`/products/${id}/`);
-
-      setProducts(products.filter((product) => product.id !== id));
-
       setProducts(products.filter((product) => product.id_product !== id));
     } catch (error) {
       console.error("Error deleting product:", error);
@@ -144,6 +135,28 @@ export default function Products() {
           </Button>
           <TableContainer component={Paper} sx={{ mt: 3 }}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Name
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Category
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Description
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Price
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Stock
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Actions
+                  </TableCell>
+                </TableRow>
+              </TableHead>
               <TableBody>
                 {products.map((product) => (
                   <TableRow key={product.id}>
