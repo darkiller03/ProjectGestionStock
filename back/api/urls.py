@@ -11,5 +11,5 @@ router.register(r'suppliers', SupplierViewSet)
 
 urlpatterns = [
     path('login/', login_view, name='login'),  # Existing login view
-    path('api/', include(router.urls)),  # API routes
+    path('', include(router.urls)),  # API routes
 ]

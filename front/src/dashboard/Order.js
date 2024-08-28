@@ -35,6 +35,8 @@ function Copyright(props) {
 export default function Orders() {
   const [orders, setOrders] = useState([]); // State to hold orders
 
+  // const navigate = useNavigate(); // Hook for navigation
+
   const handleAddOrder = () => {
     // Logic to add an order (e.g., open a modal or redirect to an add order page)
   };
