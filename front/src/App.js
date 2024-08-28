@@ -8,7 +8,7 @@ import Suppliers from "./dashboard/Suppliers";
 import Login from "./login/LoginForm";
 import PrivateRoute from "./PrivateRoute";
 
-import RootLayout from "./Layout/RootLayout";
+import Layout from "./layout/RootLayout";
 
 import { isAuthenticated } from "./auth";
 import ErrorRoute from "./components/ErrorRoute";
@@ -29,7 +29,7 @@ function App() {
           isLoggedIn ? <Navigate to="/dashboard" /> : <Navigate to="/login" />
         }
       />
-      <Route element={<PrivateRoute element={RootLayout} />}>
+      <Route element={<PrivateRoute element={Layout} />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/products" element={<Products />} />
         <Route path="/order" element={<Order />} />
