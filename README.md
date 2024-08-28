@@ -5,10 +5,10 @@
 ## Features
 
 - **Product Management**: 
-  - Add, edit, delete, and view products with detailed information like name, category, description, price, and stock levels.
+  Add, edit, delete, and view products with detailed information like name, category, description, price, and stock levels.
 - **Client Management**: 
-  - Manage client information including name, contact details, and address.
+  Manage client information including name, contact details, and address.
 - **Supplier Management**: 
-  - Keep track of suppliers with their contact details and address.
+  Keep track of suppliers with their contact details and address.
 - **Order Management**: 
-  - Create, update, and view orders. Track order status and manage total order costs.
+  Create, update, and view orders. Track order status and manage total order costs.
