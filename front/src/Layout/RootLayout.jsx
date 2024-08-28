@@ -183,7 +183,7 @@ export default function Layout() {
           </List>
         </Drawer>
         {/* <Box component="main" sx={{ flexGrow: 1, p: 3 }}> */}
-        <Outlet />
+          <Outlet />
         {/* </Box> */}
       </Box>
     </ThemeProvider>
