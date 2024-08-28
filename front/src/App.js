@@ -7,17 +7,14 @@ import Clients from "./dashboard/Clients";
 import Suppliers from "./dashboard/Suppliers";
 import Login from "./login/LoginForm";
 import PrivateRoute from "./PrivateRoute";
-import RootLayout from "./layout/RootLayout";
 import { isAuthenticated } from "./auth";
 import ErrorRoute from "./components/ErrorRoute";
-
+import Layout from "./layout/RootLayout";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(isAuthenticated());
-
   const handleLogin = (status) => {
     setIsLoggedIn(status);
   };
-
   return (
     <Routes>
       <Route path="/login" element={<Login onLogin={handleLogin} />} />
@@ -27,7 +24,7 @@ function App() {
           isLoggedIn ? <Navigate to="/dashboard" /> : <Navigate to="/login" />
         }
       />
-      <Route element={<PrivateRoute element={RootLayout} />}>
+      <Route element={<PrivateRoute element={Layout} />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/products" element={<Products />} />
         <Route path="/order" element={<Order />} />
