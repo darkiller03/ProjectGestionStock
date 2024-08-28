@@ -8,18 +8,14 @@ import Suppliers from "./dashboard/Suppliers";
 import Login from "./login/LoginForm";
 import PrivateRoute from "./PrivateRoute";
 
-import Layout from "./layout/RootLayout";
-
 import { isAuthenticated } from "./auth";
 import ErrorRoute from "./components/ErrorRoute";
-
+import Layout from "./layout/RootLayout";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(isAuthenticated());
-
   const handleLogin = (status) => {
     setIsLoggedIn(status);
   };
-
   return (
     <Routes>
       <Route path="/login" element={<Login onLogin={handleLogin} />} />
