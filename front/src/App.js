@@ -7,7 +7,9 @@ import Clients from "./dashboard/Clients";
 import Suppliers from "./dashboard/Suppliers";
 import Login from "./login/LoginForm";
 import PrivateRoute from "./PrivateRoute";
+
 import RootLayout from "./Layout/RootLayout";
+
 import { isAuthenticated } from "./auth";
 import ErrorRoute from "./components/ErrorRoute";
 
