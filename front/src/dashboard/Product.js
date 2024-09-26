@@ -41,7 +41,6 @@ export default function Products() {
     price: "",
     stock: "",
   }); // State for the product being added/edited
-  const navigate = useNavigate(); // Hook for navigation
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -87,7 +86,9 @@ export default function Products() {
         );
         setProducts(
           products.map((product) =>
-            product.id_product === response.data.id_product ? response.data : product
+            product.id_product === response.data.id_product
+              ? response.data
+              : product
           )
         );
       }
@@ -96,7 +97,7 @@ export default function Products() {
       console.error("Error saving product:", error);
     }
   };
-  
+
   const handleDeleteProduct = async (id) => {
     try {
       await axiosInstance.delete(`/products/${id}/`);
@@ -135,16 +136,28 @@ export default function Products() {
           </Button>
           <TableContainer component={Paper} sx={{ mt: 3 }}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>Name</TableCell>
-                <TableCell sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>Category</TableCell>
-                <TableCell sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>Description</TableCell>
-                <TableCell sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>Price</TableCell>
-                <TableCell sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>Stock</TableCell>
-                <TableCell sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>Actions</TableCell>
-              </TableRow>
-            </TableHead>
+              <TableHead>
+                <TableRow>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Name
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Category
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Description
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Price
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Stock
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Actions
+                  </TableCell>
+                </TableRow>
+              </TableHead>
               <TableBody>
                 {products.map((product) => (
                   <TableRow key={product.id}>

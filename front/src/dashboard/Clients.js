@@ -27,7 +27,6 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-
 export default function Clients() {
   const [clients, setClients] = useState([]); // State to hold clients
   const [modalOpen, setModalOpen] = useState(false); // State for modal
@@ -68,9 +67,7 @@ export default function Clients() {
     }
     setModalOpen(true);
   };
-
   const handleCloseModal = () => setModalOpen(false);
-
   const handleSaveClient = async () => {
     try {
       if (modalType === "add") {
@@ -83,7 +80,9 @@ export default function Clients() {
         );
         setClients(
           clients.map((client) =>
-            client.id_client === response.data.id_client ? response.data : client
+            client.id_client === response.data.id_client
+              ? response.data
+              : client
           )
         );
       }
@@ -101,7 +100,6 @@ export default function Clients() {
       console.error("Error deleting client:", error);
     }
   };
-
   const handleInputChange = (e) => {
     setCurrentClient({ ...currentClient, [e.target.name]: e.target.value });
   };
@@ -133,11 +131,21 @@ export default function Clients() {
             <Table sx={{ minWidth: 650 }} aria-label="clients table">
               <TableHead>
                 <TableRow>
-                  <TableCell sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>Name</TableCell>
-                  <TableCell sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>Phone</TableCell>
-                  <TableCell sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>Email</TableCell>
-                  <TableCell sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>Address</TableCell>
-                  <TableCell sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>Actions</TableCell>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Name
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Phone
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Email
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Address
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Actions
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

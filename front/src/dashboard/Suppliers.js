@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -28,7 +27,6 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-
 export default function Suppliers() {
   const [suppliers, setSuppliers] = useState([]); // State to hold suppliers
   const [modalOpen, setModalOpen] = useState(false); // State for modal
@@ -45,7 +43,6 @@ export default function Suppliers() {
     const fetchSuppliers = async () => {
       try {
         const response = await axiosInstance.get("/suppliers/");
-        console.log(response.data,'supplier');
         setSuppliers(response.data);
       } catch (error) {
         console.error("Error fetching suppliers:", error);
@@ -76,8 +73,11 @@ export default function Suppliers() {
   const handleSaveSupplier = async () => {
     try {
       if (modalType === "add") {
-        const response = await axiosInstance.post("/suppliers/", currentSupplier);
-        
+        const response = await axiosInstance.post(
+          "/suppliers/",
+          currentSupplier
+        );
+
         setSuppliers([...suppliers, response.data]);
       } else if (modalType === "edit") {
         const response = await axiosInstance.put(
@@ -86,7 +86,9 @@ export default function Suppliers() {
         );
         setSuppliers(
           suppliers.map((supplier) =>
-            supplier.id_supplier === response.data.id_supplier ? response.data : supplier
+            supplier.id_supplier === response.data.id_supplier
+              ? response.data
+              : supplier
           )
         );
       }
@@ -137,11 +139,21 @@ export default function Suppliers() {
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>Name</TableCell>
-                  <TableCell sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>Phone</TableCell>
-                  <TableCell sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>Email</TableCell>
-                  <TableCell sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>Address</TableCell>
-                  <TableCell sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>Actions</TableCell>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Name
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Phone
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Email
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Address
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                    Actions
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -157,7 +169,9 @@ export default function Suppliers() {
                       </Button>
                       <Button
                         color="error"
-                        onClick={() => handleDeleteSupplier(supplier.id_supplier)} 
+                        onClick={() =>
+                          handleDeleteSupplier(supplier.id_supplier)
+                        }
                       >
                         Delete
                       </Button>
